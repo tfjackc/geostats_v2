@@ -51,9 +51,6 @@
       "public": [
         "../public"
       ],
-      "public/*": [
-        "../public/*"
-      ],
       "#icon-collections": [
         "./icon-collections"
       ],

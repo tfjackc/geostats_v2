@@ -1,1 +1,1 @@
-export { default } from "file:///home/tfjackc/geog-fork/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
+export { default } from "file:///C:/Users/jcolpitt/geostats_v2/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
