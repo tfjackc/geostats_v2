@@ -4,14 +4,14 @@
     <div class="flex flex-col sm:flex-row">
       <div class="flex flex-row">
       <h1 class="ml-5 sm:ml-0 text-3xl sm:text-2xl font-semibold text-white flex items-end">SPATIAL DATA MINING</h1>
-      <button class="block sm:hidden ml-5 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 w-16 h-10 rounded-2xl" @click="toggleTheme">
+      <button class="block sm:hidden ml-5 w-16 h-10 rounded-2xl hover:bg-gradient-to-r from-green-500 to-blue-700" @click="toggleTheme">
         <Icon color="white" name="mdi:theme-light-dark" size="24"></Icon>
       </button>
       </div>
       <h3 class="ml-5 mt-0 sm:mt-2 text-xl sm:text-l text-white flex items-end"> Human Mobility Analysis</h3>
     </div>
     <div class="flex flex-row mr-5">
-      <button class="hidden sm:block bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 w-16 h-10 rounded-2xl" @click="toggleTheme">
+      <button class="hidden sm:block w-16 h-10 rounded-2xl hover:bg-violet-600 hover:bg-gradient-to-r from-green-500 to-blue-700" @click="toggleTheme">
         <Icon color="white" name="mdi:theme-light-dark" size="24"></Icon>
       </button>
     </div>

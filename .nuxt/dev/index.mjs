@@ -3,7 +3,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, lazyEventHandler, useBase, createApp, createRouter as createRouter$1, toNodeListener, fetchWithEvent, getQuery as getQuery$1, createError, getResponseStatusText } from 'file:///home/tfjackc/geog-fork/node_modules/h3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, lazyEventHandler, useBase, createApp, createRouter as createRouter$1, toNodeListener, fetchWithEvent, readFormData, getQuery as getQuery$1, createError, getResponseStatusText } from 'file:///home/tfjackc/geog-fork/node_modules/h3/dist/index.mjs';
+import { PrismaClient } from 'file:///home/tfjackc/geog-fork/node_modules/@prisma/client/default.js';
 import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///home/tfjackc/geog-fork/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import { stringify, uneval } from 'file:///home/tfjackc/geog-fork/node_modules/devalue/index.js';
 import { renderToString } from 'file:///home/tfjackc/geog-fork/node_modules/vue/server-renderer/index.mjs';
@@ -715,9 +716,11 @@ const _uw3BVY = lazyEventHandler(() => {
   return useBase(opts.baseURL, ipxHandler);
 });
 
+const _lazy_EtwjNG = () => Promise.resolve().then(function () { return movement_post$1; });
 const _lazy_Kc7naL = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
+  { route: '/api/movement', handler: _lazy_EtwjNG, lazy: true, middleware: false, method: "post" },
   { route: '/__nuxt_error', handler: _lazy_Kc7naL, lazy: true, middleware: false, method: undefined },
   { route: '/_ipx/**', handler: _uw3BVY, lazy: false, middleware: false, method: undefined },
   { route: '/**', handler: _lazy_Kc7naL, lazy: true, middleware: false, method: undefined }
@@ -902,6 +905,43 @@ const template$1 = _template;
 const errorDev = /*#__PURE__*/Object.freeze({
   __proto__: null,
   template: template$1
+});
+
+var _a;
+const prismaClientSingleton = () => {
+  return new PrismaClient();
+};
+const globalForPrisma = globalThis;
+const prisma = (_a = globalForPrisma.prisma) != null ? _a : prismaClientSingleton();
+globalForPrisma.prisma = prisma;
+
+const movement_post = defineEventHandler(async (event) => {
+  const formData = await readFormData(event);
+  const month = formData.get("month");
+  const day = formData.get("day");
+  const hour = formData.get("hour");
+  const result = await prisma.movement.findMany({
+    where: {
+      agg_time_period: {
+        //@ts-ignore
+        equals: hour
+      },
+      agg_day_period: {
+        //@ts-ignore
+        equals: day
+      },
+      month: {
+        //@ts-ignore
+        equals: month
+      }
+    }
+  });
+  return result;
+});
+
+const movement_post$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: movement_post
 });
 
 const Vue3 = version.startsWith("3");

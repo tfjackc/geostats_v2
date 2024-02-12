@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  extensions = [postgis(version: "3.3.4")]
+}
+
+model movement {
+  country              String?
+  agg_day_period       BigInt?
+  agg_time_period      BigInt?
+  month                String?
+  geography            BigInt?
+  activity_index_total Float?
+  xlat                 Float?
+  xlon                 Float?
+  data_version         String?
+  geo_aggregation      String?
+  daily_aggregation    String?
+  hourly_aggregation   BigInt?
+  geom                 Unsupported("geometry")?
+  id                   Int                      @id @default(autoincrement())
+
+  @@index([geom], type: Gist)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model spatial_ref_sys {
+  srid      Int     @id
+  auth_name String? @db.VarChar(256)
+  auth_srid Int?
+  srtext    String? @db.VarChar(2048)
+  proj4text String? @db.VarChar(2048)
+}
