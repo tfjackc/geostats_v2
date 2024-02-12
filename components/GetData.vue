@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <div class="text-3xl font-semibold text-black">Month: <v-text-field v-model="month"></v-text-field></div>
-    <div class="text-3xl font-semibold text-black">Day: <v-text-field v-model="day"></v-text-field></div>
-    <div class="text-3xl font-semibold text-black">Hour: <v-text-field v-model="hour"></v-text-field></div>
+  <div class="flex flex-row items-center justify-center">
+    <div class="text-3xl font-semibold text-black px-5">Month: <v-text-field v-model="month"></v-text-field></div>
+    <div class="text-3xl font-semibold text-black px-5">Day: <v-text-field v-model="day"></v-text-field></div>
+    <div class="text-3xl font-semibold text-black px-5">Hour: <v-text-field v-model="hour"></v-text-field></div>
 
     <button class="text-3xl font-semibold text-white outline outline-blue-950 rounded-md py-2 px-4 bg-blue-600 hover:bg-blue-950" @click="submitForm">GET DATA</button>
   </div>
