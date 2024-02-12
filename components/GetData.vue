@@ -8,7 +8,7 @@
   </div>
   <div class="flex flex-col items-center justify-center">
     <div class="text-3xl font-semibold text-black">Returned Data:</div>
-    <div class="text-3xl font-semibold text-black">{{dbreturn}}</div>
+    <div class="text-sm text-black">{{dbreturn}}</div>
   </div>
 </template>
 

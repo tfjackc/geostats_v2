@@ -22,5 +22,9 @@ export default defineEventHandler(async (event) => {
             }
         }
     });
-    return result;
+    const updatedData = JSON.stringify(result, (_key, value) =>
+        typeof value === 'bigint' ? value.toString() : value
+    );
+
+    return { updatedData };
 });

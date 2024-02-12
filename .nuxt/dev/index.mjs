@@ -936,7 +936,11 @@ const movement_post = defineEventHandler(async (event) => {
       }
     }
   });
-  return result;
+  const updatedData = JSON.stringify(
+    result,
+    (_key, value) => typeof value === "bigint" ? value.toString() : value
+  );
+  return { updatedData };
 });
 
 const movement_post$1 = /*#__PURE__*/Object.freeze({
