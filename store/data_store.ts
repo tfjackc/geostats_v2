@@ -6,7 +6,7 @@ export const useDataStore = defineStore('data_store', {
         month: '2020-10' as string,
         day: 1 as number,
         hour: 12 as number,
-        dbreturn: [{}],
+        dbreturn: [] as QueryValue,
     }),
     getters: {
     },
